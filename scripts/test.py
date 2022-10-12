@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+
+# Python 2/3 compatibility imports
+from __future__ import print_function
+from multiprocessing.connection import wait
+from six.moves import input
+import commons
+
+import sys
+import copy
+import rospy
+import moveit_commander
+import moveit_msgs.msg
+from geometry_msgs.msg import Pose, Point, Quaternion, PoseStamped
+
+moveit_commander.roscpp_initialize(sys.argv)
+rospy.init_node("hc10_move_group_cartesian_path", anonymous=True)
+robot = moveit_commander.RobotCommander()
+scene = moveit_commander.PlanningSceneInterface()
+
+group_name = "hc10_arm"
+move_group = moveit_commander.MoveGroupCommander(group_name)
+
+rospy.sleep(1)
+
+print("Starting trajectory")
+
+# Initialization process
+print("=== Initialization process ===")
+# Remove all objects in scene
+object_names = scene.get_known_object_names()
+for object_name in object_names:
+    print(f"Removing object '{object_name}'")
+    scene.remove_world_object(name = object_name)
+if len(object_names) == 0:
+    print("> Nothing to delete in the scene")
+# Get back to home pose
+print("> Going to 'home' pose ...", end ="", flush = True)
+commons.plan_and_go(move_group, pose = commons.HOME)
+print("\r> Going to 'home' pose DONE")
+print("")
+
+# Test sequence
+print("=== Test sequence ===")
+print("  < trajectory without box >")
+commons.test_movement(move_group, pose = commons.END, pose_name = "end")
+commons.test_movement(move_group, pose = commons.HOME, pose_name = "home")
+
+box_location = (0.5, 0, 1)
+box_name = "box"
+print("")
+print(f"> Adding a box to the scene at {box_location} with name '{box_name}' in frame '{robot.get_planning_frame()}'")
+is_box_spawned = commons.add_box(scene, robot, position = box_location, name = box_name)
+print(f"> Box spawning: " + ("SUCCESS" if is_box_spawned else "TIMEOUT"))
+print("")
+print("  < trajectory with box >")
+rospy.sleep(1)
+
+commons.test_movement(move_group, pose = commons.END, pose_name = "end")
+commons.test_movement(move_group, pose = commons.HOME, pose_name = "home")
+
+
+print("...")
+rospy.sleep(3)
