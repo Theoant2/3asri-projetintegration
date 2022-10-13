@@ -20,6 +20,7 @@ scene = moveit_commander.PlanningSceneInterface()
 
 group_name = "hc10_arm"
 move_group = moveit_commander.MoveGroupCommander(group_name)
+move_group.set_goal_tolerance(0.1)
 
 rospy.sleep(1)
 

@@ -19,4 +19,6 @@
     <arg name="moveit_controller_manager" value="ros_control" />
   </include>
 
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub" />
+
 </launch>

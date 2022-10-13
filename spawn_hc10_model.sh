@@ -1,1 +1,0 @@
-rosrun gazebo_ros spawn_model -file src/roscd_motoman_hc10_support.urdf -urdf -x 0 -y 0 -z 1 -model hc10

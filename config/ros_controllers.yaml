@@ -1,5 +1,5 @@
-arm_position_controller:
-  type: position_controllers/JointTrajectoryController
+gazebo_ros_control:
+  type: effort_controllers/JointTrajectoryController
   joints:
     - joint_1_s
     - joint_2_l
@@ -9,32 +9,44 @@ arm_position_controller:
     - joint_6_t
   gains:
     joint_1_s:
-      p: 100
-      d: 1
-      i: 1
+      p: 20
+      d: 5
+      i: 5
       i_clamp: 1
     joint_2_l:
-      p: 100
-      d: 1
-      i: 1
+      p: 20
+      d: 5
+      i: 5
       i_clamp: 1
     joint_3_u:
-      p: 100
-      d: 1
-      i: 1
+      p: 20
+      d: 5
+      i: 5
       i_clamp: 1
     joint_4_r:
-      p: 100
-      d: 1
-      i: 1
+      p: 20
+      d: 5
+      i: 5
       i_clamp: 1
     joint_5_b:
-      p: 100
-      d: 1
-      i: 1
+      p: 20
+      d: 5
+      i: 5
       i_clamp: 1
     joint_6_t:
-      p: 100
-      d: 1
-      i: 1
+      p: 20
+      d: 5
+      i: 5
       i_clamp: 1
+  constraints:
+    goal_time: 2.0
+    stopped_velocity_tolerance: 0.1
+    joint_1_s: {trajectory: 0.3, goal: 0.3}
+    joint_2_l: {trajectory: 0.3, goal: 0.3}
+    joint_3_u: {trajectory: 0.3, goal: 0.3}
+    joint_4_r: {trajectory: 0.3, goal: 0.3}
+    joint_5_b: {trajectory: 0.3, goal: 0.3}
+    joint_6_t: {trajectory: 0.3, goal: 0.3}
+  stop_trajectory_duration: 0.1
+  state_publish_rate:  50
+  action_monitor_rate: 10

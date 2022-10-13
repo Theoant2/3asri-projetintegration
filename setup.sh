@@ -1,11 +1,7 @@
-echo "Extracting package"
-rm -rf motoman
-mv * ../
-cd ..
-rm -rf 3asri-projetintegration
+echo "Renaming package"
+mv 3asri-projetintegration hc10_moveit_config
 
 echo "Moving xarco files"
-mv hc10.xacro motoman/motoman_hc10_support/urdf/
-mv hc10_macro.xacro motoman/motoman_hc10_support/urdf/
+mv motoman_hc10_support ../motoman
 
-echo "Setup done ..."
+echo "Setup done"
