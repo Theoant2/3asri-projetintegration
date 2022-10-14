@@ -6,11 +6,6 @@
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
   <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
 
-  <rosparam command="load" file="$(find hc10_moveit_config)/config/sensors_3d.yaml" />
-  <param name="octomap_frame" type="string" value="odom_combined" />
-  <param name="octomap_resolution" type="double" value="0.05" />
-  <param name="max_range" type="double" value="5.0" />
-
   <!-- Run -->
   <node pkg="moveit_setup_assistant" type="moveit_setup_assistant" name="moveit_setup_assistant"
         args="--config_pkg=hc10_moveit_config"
