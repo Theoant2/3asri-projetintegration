@@ -31,3 +31,12 @@ Et terminer l'installation en compilant l'espace de travail:
 catkin build
 . devel/setup.bash
 ```
+
+-------------------------------
+
+Si vous désirez apporter des modifications (alors faites sur une nouvelle branche), vous devrez exécuter le script:
+```bash
+chmod +x git_prepare.sh
+./git_prepare.sh
+```
+avant de `git add`, `git commit` et `git push`.
