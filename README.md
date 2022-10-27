@@ -23,7 +23,7 @@ git clone https://github.com/Theoant2/3asri-projetintegration.git
 Exécuter le script d'initialisation:
 ```bash
 chmod +x setup.sh
-./setup.sh
+./3asri-projetintegration/setup.sh
 ```
 
 Et terminer l'installation en compilant l'espace de travail:
@@ -36,6 +36,7 @@ catkin build
 
 Si vous désirez apporter des modifications (alors faites sur une nouvelle branche), vous devrez exécuter le script:
 ```bash
+cd hc10_moveit_config
 chmod +x git_prepare.sh
 ./git_prepare.sh
 ```
