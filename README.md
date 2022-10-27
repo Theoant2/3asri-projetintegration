@@ -22,7 +22,7 @@ git clone https://github.com/Theoant2/3asri-projetintegration.git
 
 Exécuter le script d'initialisation:
 ```bash
-chmod +x setup.sh
+chmod +x 3asri-projetintegration/setup.sh
 ./3asri-projetintegration/setup.sh
 ```
 
